@@ -1,0 +1,67 @@
+/* line 1, ../sass/main.scss */
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  border-top: 0.5em ridge #F60;
+  background-color: ivory;
+}
+
+/* line 8, ../sass/main.scss */
+ul {
+  list-style: none;
+  padding: 0;
+}
+/* line 11, ../sass/main.scss */
+ul li {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 17, ../sass/main.scss */
+#todoList {
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+}
+/* line 23, ../sass/main.scss */
+#todoList .list-header #inputNew {
+  border: solid 1px #D8D3D3;
+  border-radius: 0.1em;
+  background-color: rgba(245, 231, 231, 0.5);
+  font-size: 1.2em;
+  width: 100%;
+  height: 30px;
+}
+/* line 31, ../sass/main.scss */
+#todoList .list-header #inputNew:hover {
+  border: 2px solid #ff8d19;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+/* line 38, ../sass/main.scss */
+#todoList #list-content {
+  text-align: left;
+}
+/* line 41, ../sass/main.scss */
+#todoList #list-content li {
+  line-height: 1.8em;
+  border-bottom: dashed #ccc 1px;
+  width: 100%;
+}
+/* line 46, ../sass/main.scss */
+#todoList #list-content li button {
+  float: right;
+  background: none;
+  border: none;
+  position: relative;
+  top: 8px;
+  display: none;
+}
+/* line 55, ../sass/main.scss */
+#todoList #list-content li:hover {
+  background-color: rgba(255, 212, 22, 0.4);
+  color: #230782;
+}
+/* line 59, ../sass/main.scss */
+#todoList #list-content li:hover button {
+  display: block;
+}

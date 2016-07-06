@@ -1,113 +1,86 @@
-var TodoList = React.createClass({
-  getInitialState: function(){
-    return ({
-      todoList : []
-    })
+var TodoDemo = React.createClass({
+  getInitialState: () => {
+    return {items:[]};
   },
-  handleChange : function (rows){
-    this.setState ({ todoList : rows});
+
+  handleChange: () => {
+
   },
-  render : function (){
-    return (
+
+  render: function () {
+    return(
         <div>
-          <ListHeader  addList ={this.handleChange} todo = {this.state.todoList} />
-          <ListTodo delItem = {this.handleChange}  todo = {this.state.todoList} />
-          <ListFooter />
+          <TodoHeader></TodoHeader>
+          <TodoForm addItems={this.handleChange}></TodoForm>
+          <TodoList items={this.state.items}></TodoList>
+          <TodoFooter></TodoFooter>
         </div>
     )
 
   }
-
 });
 
-var ListHeader = React.createClass({
-  handleAdd : function(e){
+const TodoHeader = () => {
+  return(
+    <h2>Todo List</h2>
+  )
+};
+
+
+var TodoForm = React.createClass({
+  onAdd: function(e){
     e.preventDefault();
-    var newTodo = this.refs.inputNew.value.trim();
-    var rows = this.props.todo;
-    if ( newTodo != '' ){
-      rows.push ({title: newTodo, complete:true});
-      this.props.addList (rows) ;
+    var newItem = this.refs.inputNew.value.trim();
+    var items = this.props.items;
+    if ( newItem != '' ){
+      items.push ({newItem});
+      this.props.addItems (items) ;
     }
     this.refs.inputNew.value = '';
-
   },
 
-  render : function (){
-    return (
-    <header className="list-header">
-      <h2>ToDo List</h2>
-        <form onSubmit = {this.handleAdd}>
-          <input ref = "inputNew" type = "text"  placeholder="type a todo list" id="inputNew"  />
-        </form>
-    </header>
-    )
-  }
-});
+  render: () => {
+    return(
+      <form onSubmit = {this.onAdd}>
+        <input ref = "inputNew" type = "text"  placeholder="type a todo list" id="inputNew"  />
+      </form>
+  )}
+})
 
-var ListTodo = React.createClass({
 
-  getInitialState: function () {
-    return {
-      complete: (!!this.props.complete) || false
-    };
-  },
+/*
 
-  handleDel : function (delIndex){
-    return (function () {
-      this.props.todo.splice (delIndex,1);
-      this.props.delItem (this.props.todo);
-    }).bind(this);
-  },
-
-  onCheck: function(i){
-    return (function (e) {
-      debugger;
-      this.props.todo.complete = e.target.checked;
-      console.log(i);
-      debugger;
-          /*this.setState({
-           complete: e.target.checked
-           });
-           */
-        }).bind(this);
-    },
-
-  render : function (){
-
-    return (
-        <ul id="list-content">
-          {
-            this.props.todo.map(function(item,i){
-              var labelStyle={
-                'text-decoration': this.state.checked?'line-through':''
-              };
-              return (
-                  <li>
-                    <input
-                        type="checkbox"
-                        checked={item.complete}
-                        onClick={this.onCheck({i})}
-                    />
-                    <label style={labelStyle}>{item.title}</label>
-                    <button className="list-delete" onClick = {this.handleDel({i})} >
-                      <i className="fa fa-times fa-lg"></i>
-                    </button>
-                  </li>
-              )
-            }.bind(this))
-          }
-        </ul>
-    )
-  }
-});
-
-function ListFooter() {
-  return (
-      <footer className="list-footer">
-        <label>completed</label>
-      </footer>
-  );
+const TodoForm = (props) => {
+  return(
+      <form onSubmit = {props.onChange}>
+        <input ref = "inputNew" type = "text"  placeholder="type a todo list" id="inputNew"  />
+      </form>
+  )
 }
-ReactDOM.render (<TodoList />, document.getElementById("todoList"));
-// ReactDOM.render (<todoList />, $("#todoList"));
+*/
+
+const TodoList = (props) => {
+  return(
+      <ul>
+        {props.items.map((item) => {
+          return <TodoItem>{item}</TodoItem>
+        })
+        }
+      </ul>
+
+  );
+};
+
+const TodoItem = (props) => {
+  return (
+      <li>{props.title}</li>
+  )
+}
+
+const TodoFooter = () => {
+  return (
+      <p>Completed!</p>
+  )
+}
+
+ReactDOM.render (<TodoDemo />, document.getElementById("todoList"));
