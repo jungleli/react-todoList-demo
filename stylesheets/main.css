@@ -23,8 +23,13 @@ ul li {
   width: 50%;
   margin: 0 auto;
 }
-/* line 23, ../sass/main.scss */
-#todoList .list-header #inputNew {
+/* line 21, ../sass/main.scss */
+#todoList a {
+  cursor: pointer;
+  text-decoration: none;
+}
+/* line 27, ../sass/main.scss */
+#todoList .list-header input {
   border: solid 1px #D8D3D3;
   border-radius: 0.1em;
   background-color: rgba(245, 231, 231, 0.5);
@@ -32,22 +37,27 @@ ul li {
   width: 100%;
   height: 30px;
 }
-/* line 31, ../sass/main.scss */
-#todoList .list-header #inputNew:hover {
+/* line 35, ../sass/main.scss */
+#todoList .list-header input:hover {
   border: 2px solid #ff8d19;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
-/* line 38, ../sass/main.scss */
+/* line 42, ../sass/main.scss */
 #todoList #list-content {
   text-align: left;
 }
-/* line 41, ../sass/main.scss */
+/* line 45, ../sass/main.scss */
+#todoList #list-content li.done label {
+  color: #777777;
+  text-decoration: line-through;
+}
+/* line 51, ../sass/main.scss */
 #todoList #list-content li {
   line-height: 1.8em;
   border-bottom: dashed #ccc 1px;
   width: 100%;
 }
-/* line 46, ../sass/main.scss */
+/* line 56, ../sass/main.scss */
 #todoList #list-content li button {
   float: right;
   background: none;
@@ -56,12 +66,58 @@ ul li {
   top: 8px;
   display: none;
 }
-/* line 55, ../sass/main.scss */
+/* line 65, ../sass/main.scss */
 #todoList #list-content li:hover {
   background-color: rgba(255, 212, 22, 0.4);
   color: #230782;
 }
-/* line 59, ../sass/main.scss */
+/* line 69, ../sass/main.scss */
 #todoList #list-content li:hover button {
   display: block;
+}
+/* line 78, ../sass/main.scss */
+#todoList .list-footer {
+  font-family: monospace;
+  position: relative;
+}
+/* line 82, ../sass/main.scss */
+#todoList .list-footer .todo-remain-count {
+  float: left;
+  color: red;
+}
+/* line 86, ../sass/main.scss */
+#todoList .list-footer .todo-all-count {
+  color: blue;
+}
+/* line 89, ../sass/main.scss */
+#todoList .list-footer .todo-completed-count {
+  color: green;
+}
+/* line 92, ../sass/main.scss */
+#todoList .list-footer ul.todo-filters {
+  position: absolute;
+  left: 164px;
+  top: -12px;
+}
+/* line 97, ../sass/main.scss */
+#todoList .list-footer ul.todo-filters li {
+  display: inline;
+}
+/* line 99, ../sass/main.scss */
+#todoList .list-footer ul.todo-filters li a {
+  padding: 5px 8px;
+  border: 1px solid transparent;
+}
+/* line 102, ../sass/main.scss */
+#todoList .list-footer ul.todo-filters li a:hover {
+  border: 1px solid red;
+  border-radius: 3%;
+}
+/* line 110, ../sass/main.scss */
+#todoList .list-footer #clear-completed {
+  float: right;
+}
+/* line 112, ../sass/main.scss */
+#todoList .list-footer #clear-completed:hover {
+  text-decoration: underline;
 }

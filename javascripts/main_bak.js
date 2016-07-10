@@ -26,7 +26,7 @@ var ListHeader = React.createClass({
     var newTodo = this.refs.inputNew.value.trim();
     var rows = this.props.todo;
     if ( newTodo != '' ){
-      rows.push ({title: newTodo, complete:true});
+      rows.push ({title:newTodo, complete:true});
       this.props.addList (rows) ;
     }
     this.refs.inputNew.value = '';
@@ -36,7 +36,7 @@ var ListHeader = React.createClass({
   render : function (){
     return (
     <header className="list-header">
-      <h2>ToDo List</h2>
+      /**/<h2>ToDo List</h2>
         <form onSubmit = {this.handleAdd}>
           <input ref = "inputNew" type = "text"  placeholder="type a todo list" id="inputNew"  />
         </form>

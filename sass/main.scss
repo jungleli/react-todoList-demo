@@ -18,9 +18,13 @@ ul {
   text-align: center;
   width: 50%;
   margin:0 auto;
+  a{
+    cursor: pointer;
+    text-decoration: none;
+  }
 
   .list-header{
-    #inputNew {
+    input {
       border: solid 1px #D8D3D3;
       border-radius: 0.1em;
       background-color: rgba(245, 231, 231, 0.5);
@@ -38,7 +42,13 @@ ul {
   #list-content{
       text-align: left;
 
-    li {
+    li.done label{
+      color: #777777;
+      text-decoration: line-through;
+    }
+
+
+    li{
       line-height: 1.8em;
       border-bottom: dashed #ccc 1px;
       width: 100%;
@@ -63,4 +73,48 @@ ul {
     }
 
   }
+
+
+  .list-footer{
+
+    font-family: monospace;
+    position: relative;
+    .todo-remain-count{
+      float:left;
+      color:red;
+    }
+    .todo-all-count{
+      color:blue;
+    }
+    .todo-completed-count{
+      color:green;
+    }
+    ul.todo-filters{
+      position: absolute;
+      left: 164px;
+      top: -12px;
+
+      li{
+        display: inline;
+        a{
+          padding: 5px 8px;
+          border: 1px solid transparent;
+          &:hover{
+            border: 1px solid red;
+            border-radius: 3%;
+          }
+        }
+      }
+    }
+
+    #clear-completed{
+      float:right;
+      &:hover{
+          text-decoration: underline;
+        }
+      }
+
+
+  }
 }
+
