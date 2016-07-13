@@ -19,8 +19,13 @@ var TodoDemo = React.createClass({
     });
 
     localStorage.setItem('todos', JSON.stringify({todos: filteredTodos}));
-    debugger;
     this.setState({todos: filteredTodos});
+  },
+
+  handleToggle() {
+    var {todos} = this.state;
+    localStorage.setItem('todos', JSON.stringify({todos: todos}));
+    this.setState({todos:todos});
   },
 
   completed: function () {
@@ -37,19 +42,16 @@ var TodoDemo = React.createClass({
       return true != item.done;
     });
 
-    debugger;
     return remainedTodos;
   },
 
   clearCompletedItems: function () {
     var {todos} = this.state;
-    debugger;
     var filteredTodos = todos.filter(function (item) {
       return true != item.done;
     });
 
     localStorage.setItem('todos', JSON.stringify({todos: filteredTodos}));
-    debugger;
     this.setState({todos: filteredTodos});
   },
 
@@ -80,7 +82,7 @@ var TodoDemo = React.createClass({
     return (
       <div>
         <TodoForm addItems={this.addTodo} items={this.state.todos}/>
-        <TodoList deleteItem={this.handleDel} items={this.state.todos}/>
+        <TodoList deleteItem={this.handleDel} handleToggle={this.handleToggle} items={this.state.todos}/>
         <TodoFooter allItemsCount={this.state.todos.length}
                     clearCompletedItems={this.clearCompletedItems}
                     itemsDoneCount={this.completed().length}
@@ -131,6 +133,11 @@ var TodoList = React.createClass({
     this.props.deleteItem(todo);
   },
 
+  handleToggle(){
+    debugger;
+    this.props.handleToggle();
+  },
+
   render: function () {
 
     var todoList;
@@ -144,6 +151,7 @@ var TodoList = React.createClass({
               <TodoItem key={i}
                         todo={todo}
                         onDeleteTodo={this.deleteTodo.bind(this, todo)}
+                        onHandleToggle={this.handleToggle.bind(this,todo)}
               />
             )
           }, this)
@@ -168,10 +176,10 @@ var TodoItem = React.createClass({
     this.props.onDeleteTodo(e);
   },
 
-  toggleDone: function (event) {
+  toggleDone(e) {
     let todo = this.props.todo;
-    todo.done = event.target.checked;
-    this.setState({todo});
+    todo.done = e.target.checked;
+    this.props.onHandleToggle();
   },
 
   render() {
