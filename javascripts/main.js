@@ -22,7 +22,9 @@ var TodoDemo = React.createClass({
     this.setState({todos: filteredTodos});
   },
 
-  handleToggle() {
+  handleToggle(todo, status) {
+    debugger;
+    // todo.done = status;
     var {todos} = this.state;
     localStorage.setItem('todos', JSON.stringify({todos: todos}));
     this.setState({todos:todos});
@@ -128,16 +130,6 @@ var TodoForm = React.createClass({
 
 var TodoList = React.createClass({
 
-  deleteTodo(todo) {
-    debugger;
-    this.props.deleteItem(todo);
-  },
-
-  handleToggle(){
-    debugger;
-    this.props.handleToggle();
-  },
-
   render: function () {
 
     var todoList;
@@ -150,8 +142,8 @@ var TodoList = React.createClass({
             return (
               <TodoItem key={i}
                         todo={todo}
-                        onDeleteTodo={this.deleteTodo.bind(this, todo)}
-                        onHandleToggle={this.handleToggle.bind(this,todo)}
+                        onDeleteTodo={this.props.deleteItem.bind(this, todo)}
+                        onHandleToggle={this.props.handleToggle.bind(this, todo)}
               />
             )
           }, this)
@@ -172,14 +164,14 @@ var TodoList = React.createClass({
 
 var TodoItem = React.createClass({
 
-  deleteHandler(e) {
-    this.props.onDeleteTodo(e);
-  },
-
   toggleDone(e) {
     let todo = this.props.todo;
-    todo.done = e.target.checked;
-    this.props.onHandleToggle();
+    let status = e.target.checked;
+    debugger;
+    todo.done = status;
+    this.props.onHandleToggle(todo);
+    debugger;
+
   },
 
   render() {
@@ -190,7 +182,7 @@ var TodoItem = React.createClass({
                checked={this.props.todo.done}
                onChange={this.toggleDone}/>
         <label className="todo-title">{this.props.todo.title}</label>
-        <button className="delete-item" onClick={this.deleteHandler}>
+        <button className="delete-item" onClick={this.props.onDeleteTodo}>
           <i className="fa fa-times fa-lg"></i>
         </button>
       </li>
