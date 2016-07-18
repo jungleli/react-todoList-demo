@@ -130,6 +130,13 @@ var TodoForm = React.createClass({
 
 var TodoList = React.createClass({
 
+  handleDeleteItem: function(){
+    this.props.deleteItem();
+  },
+  handleToggle: function(){
+    this.props.handleToggle();
+  },
+
   render: function () {
 
     var todoList;
@@ -142,8 +149,8 @@ var TodoList = React.createClass({
             return (
               <TodoItem key={i}
                         todo={todo}
-                        onDeleteTodo={this.props.deleteItem.bind(this, todo)}
-                        onHandleToggle={this.props.handleToggle.bind(this, todo)}
+                        onDeleteTodo={this.handleDeleteItem.bind(this, todo)}
+                        onHandleToggle={this.handleToggle.bind(this, todo)}
               />
             )
           }, this)
